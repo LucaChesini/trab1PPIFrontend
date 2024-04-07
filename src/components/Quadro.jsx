@@ -1,51 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Coluna from "./Coluna";
 
 
 const Quadro = () => {
     const [cards, setCards] = useState([]);
+    const cardsRef = useRef(cards);
+
     const colunas = [
-        {id: 1, nome: "backlog"},
-        {id: 2, nome: "fila"},
-        {id: 3, nome: "fazendo"},
-        {id: 4, nome: "finalizado"},
+        {id: 1, nome: "Backlog"},
+        {id: 2, nome: "Fila"},
+        {id: 3, nome: "Fazendo"},
+        {id: 4, nome: "Finalizado"},
     ];
 
-    function getCards() {
-        var cards = [
+    
+    useEffect(() => {
+        const cartas = [
             {
                 id: 1,
                 nome: "Card 1",
+                coluna: 1
             },
             {
                 id: 2,
                 nome: "Card 2",
+                coluna: 1
             },
-        ]
-    
-        return cards;
-    }
+            {
+                id: 3,
+                nome: "Card 3",
+                coluna: 2
+            },
+            {
+                id: 4,
+                nome: "Card 4",
+                coluna: 3
+            },
+            {
+                id: 5,
+                nome: "Card 5",
+                coluna: 4
+            },
+        ];
 
-    useEffect(() => {
-        setCards(getCards());
+        setCards(cartas);
+
     }, []);
 
-    function onDrop(cardId, novaColuna) {
-        console.log(cardId, novaColuna);
-        // const updatedCards = cards.map(card => {
-        //     if (card.id === cardId) {
-        //         return { ...card, column: newColumnId };
-        //     }
-        //     return card;
-        // });
-        // setCards(updatedCards);
-    }
+    useEffect(() => {
+        cardsRef.current = cards;
+    }, [cards]);
 
+    function onDrop(cardId, novaColuna) {
+        const cartasNovas = cardsRef.current.map(card => {
+            if (cardId === card.id) {
+                return { ...card, coluna: novaColuna};
+            }
+            return card;
+        });
+
+        setCards(cartasNovas);
+    }
 
     return (
         <div className="d-flex justify-content-around h-100">
             {colunas.map(coluna => (
-                <Coluna key={coluna.id} nomeColuna={coluna.nome} cards={cards} onDrop={onDrop} />
+                <Coluna key={coluna.id} id={coluna.id} nome={coluna.nome} cards={cards.filter(card => card.coluna === coluna.id)} onDrop={onDrop} />
             ))}
         </div>
     )

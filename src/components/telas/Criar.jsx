@@ -10,35 +10,6 @@ const Criar = () => {
 
     const onSubmit = (data) => {
         console.log('Teste');
-    //     if (isSubmitting) return;
-
-    //     setIsSubmitting(true);
-
-    //     const dataFormatada = new Date(data.publishDate).toISOString();
-
-    //     const objeto = {
-    //         title: data.title,
-    //         description: data.description,
-    //         pageCount: data.pageCount,
-    //         excerpt: data.excerpt,
-    //         publishDate: dataFormatada,
-    //     }
-
-    //     axios.post(`http://localhost:3000/api/livros`, objeto)
-    //     .then(response => {
-    //         if (response.status == 200){
-    //             setMensagemSucesso('Livro Cadastrado com Sucesso');
-    //         }
-    //         setIsSubmitting(false);
-    //         reset();
-
-    //         setTimeout(() => {
-    //             setMensagemSucesso(null);
-    //         }, 4000);
-    //     }).catch(erro => {
-    //         console.error(erro);
-    //         setIsSubmitting(false);
-    //     })
     }
 
     return (
