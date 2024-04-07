@@ -17,7 +17,7 @@ const Coluna = ({id, nome, cards, onDrop}) => {
             <h2>{nome}</h2>
             {cards.map((card) => {
                 return (
-                    <Card key={card.id} id={card.id} nome={card.nome} coluna={id}/>
+                    <Card key={card._id} id={card._id} nome={card.nome} descricao={card.descricao} coluna={id}/>
                 );
             })}
         </div>

@@ -17,9 +17,9 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path='criar' element={<Criar />} />
-        <Route path=':id/editar' element={<Editar />} />
-        <Route path=':id/deletar' element={<Deletar />} />
-        <Route path=':id' element={<Mostrar />} />
+        <Route path=':cardId/editar' element={<Editar />} />
+        <Route path=':cardId/deletar' element={<Deletar />} />
+        <Route path=':cardId' element={<Mostrar />} />
       </Routes>
     </DndProvider>
     </>

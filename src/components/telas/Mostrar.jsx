@@ -3,16 +3,34 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const Mostrar = () => {
-    // const { cardId } = useParams();
+    const { cardId } = useParams();
     const [data, setData] = useState('');
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/api/cards/${cardId}`)
+        .then(response => {
+            setData(response.data);
+            setLoading(false);
+        }).catch(err => {
+            console.log(err);
+        })
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="container text-center">
+                Carregando...
+            </div>
+        );
+    }
 
     return (
         <div className="container">
             <div className="d-flex flex-column">
                 <ul className="list-unstyled">
-                    <li className="mb-1 border-bottom">Título: </li>
-                    <li className="mb-1 border-bottom">Descrição: </li>
+                    <li className="mb-1 border-bottom">Título: {data.nome}</li>
+                    <li className="mb-1 border-bottom">Descrição: {data.descricao}</li>
                 </ul>
                 <div className="d-flex justify-content-around">
                     <Link to={`editar`}>

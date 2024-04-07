@@ -2,7 +2,7 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { Link } from "react-router-dom";
 
-const Card = ({id, nome, coluna}) => {
+const Card = ({id, nome, coluna, descricao}) => {
     const [{isDragging}, drag] = useDrag(() => ({
         type: "card",
         item: {id, coluna},
@@ -23,7 +23,7 @@ const Card = ({id, nome, coluna}) => {
             <Link to={`${id}`} className="text-decoration-none text-dark">
                 <div className="h-100 p-2">
                     <h3>{nome}</h3>
-                    <p style={textoStyle}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni officiis mollitia corporis maxime itaque! Enim vitae iusto dolore ullam illum animi, ratione provident natus. Consequuntur eos quaerat iure obcaecati atque?</p>
+                    <p style={textoStyle}>{descricao}</p>
                 </div>
             </Link>
         </div>
