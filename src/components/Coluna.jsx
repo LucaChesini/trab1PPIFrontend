@@ -1,21 +1,42 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import { useDrop } from "react-dnd";
 
-function getCards() {
-    cards = [
-        'card1',
-        'card2'
-    ]
 
-    return cards;
-}
+const Coluna = ({nomeColuna, cards}) => {
+    // const [cards, setCards] = useState([]);
+    const [ {isOver} , drop] = useDrop(() => ({
+        accept: "card",
+        drop: (item) => onDrop(item.id, nomeColuna),
+        collect: (monitor) => ({
+            isOver: !!monitor.isOver()
+        })
+    }));
+    
+    // function getCards() {
+    //     var cards = [
+    //         {
+    //             id: 1,
+    //             nome: "Card 1",
+    //         },
+    //         {
+    //             id: 2,
+    //             nome: "Card 2",
+    //         },
+    //     ]
+    
+    //     return cards;
+    // }
 
-const Coluna = () => {
+    // useEffect(() => {
+    //     setCards(getCards());
+    // }, []);
+
     return (
-        <div>
-            {/* {getCards().map((card) => (
-                <Card />
-            ))} */}
-            "Teste"
+        <div className="w-25 h-100 border-start border-end d-flex flex-column align-items-center" ref={drop}>
+            {cards.map((card) => {
+                return <Card key={card.id} id={card.id} nome={card.nome} coluna={nomeColuna}/>
+            })}
         </div>
     )
 }
