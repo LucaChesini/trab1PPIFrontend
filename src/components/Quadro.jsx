@@ -60,7 +60,7 @@ const Quadro = () => {
     }
 
     return (
-        <div className="d-flex justify-content-around h-100">
+        <div className="d-flex justify-content-around" style={{height: "calc(100vh - 180px)"}}>
             {colunas.map(coluna => (
                 <Coluna key={coluna.id} id={coluna.id} nome={coluna.nome} cards={cards.filter(card => card.coluna == coluna.id)} onDrop={onDrop} />
             ))}
