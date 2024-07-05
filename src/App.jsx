@@ -8,6 +8,7 @@ import Criar from './components/telas/Criar';
 import Editar from './components/telas/Editar';
 import Deletar from './components/telas/Deletar';
 import Mostrar from './components/telas/Mostrar';
+import Login from './components/telas/Login';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path=':cardId/editar' element={<Editar />} />
         <Route path=':cardId/deletar' element={<Deletar />} />
         <Route path=':cardId' element={<Mostrar />} />
+        <Route path='login' element={<Login />} />
       </Routes>
     </DndProvider>
     </>

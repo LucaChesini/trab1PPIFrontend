@@ -38,7 +38,7 @@ const Quadro = () => {
         axios.put(`http://localhost:3000/api/cards/${cardId}`, objeto)
         .then(response => {
             const cartasNovas = cardsRef.current.map(card => {
-                if (cardId === card._id) {
+                if (cardId === card.id) {
                     return { ...card, coluna: novaColuna};
                 }
                 return card;

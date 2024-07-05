@@ -18,7 +18,7 @@ const Coluna = ({id, nome, cards, onDrop}) => {
             <div className="w-100 d-flex flex-column align-items-center overflow-y-scroll" style={{height: "calc(100% - 40px)"}}>
                 {cards.map((card) => {
                     return (
-                        <Card key={card._id} id={card._id} nome={card.nome} descricao={card.descricao} coluna={id}/>
+                        <Card key={card.id} id={card.id} nome={card.nome} descricao={card.descricao} coluna={id}/>
                     );
                 })}
             </div>
