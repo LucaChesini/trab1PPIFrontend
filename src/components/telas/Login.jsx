@@ -7,33 +7,34 @@ const Login = () => {
     const { register, handleSubmit, setValue, reset, formState: {errors}} = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [mensagemSucesso, setMensagemSucesso] = useState(null);
+    const [mensagemErro, setMensagemErro] = useState(null);
 
     const onSubmit = (data) => {
         if (isSubmitting) return;
+        setIsSubmitting(true);
         
-        // setIsSubmitting(true);
-        
-        // const objeto = {
-        //     nome: data.nome,
-        //     descricao: data.descricao,
-        //     coluna: 1
-        // }
+        const objeto = {
+            nome: data.nome,
+            senha: data.senha
+        }
 
-        // axios.post(`http://localhost:3000/api/cards`, objeto)
-        // .then(response => {
-        //     if (response.status == 200){
-        //         setMensagemSucesso('Card Cadastrado com Sucesso');
-        //     }
-        //     setIsSubmitting(false);
-        //     reset();
+        axios.post(`http://localhost:3000/api/login`, objeto)
+        .then(response => {
+            if (response.status == 200){
+                localStorage.setItem('accessToken', response.data.accessToken);
+                setMensagemSucesso('Login Realizado com Sucesso');
+            }
+            setIsSubmitting(false);
+            reset();
 
-        //     setTimeout(() => {
-        //         setMensagemSucesso(null);
-        //     }, 4000);
-        // }).catch(erro => {
-        //     console.error(erro);
-        //     setIsSubmitting(false);
-        // })
+            // setTimeout(() => {
+            //     setMensagemSucesso(null);
+            // }, 4000);
+        }).catch(erro => {
+            console.error(erro);
+            setMensagemErro('Nome de usuário ou senha incorretos');
+            setIsSubmitting(false);
+        })
     }
 
     return (
@@ -42,7 +43,8 @@ const Login = () => {
                 <div className="w-50">
                     <h2>Login</h2>
                     {/* {mensagemSucesso && <p className="alert alert-success">{mensagemSucesso}</p>} */}
-                    <form >
+                    {mensagemErro && <p className="alert alert-danger">{mensagemErro}</p>}
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="d-flex flex-column mb-2">
                             <label htmlFor="nome" className="form-label mb-0">Nome</label>
                             <input className="form-control" type="text" id="nome" {...register('nome', {required: 'Campo Obrigatório'})} />

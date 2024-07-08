@@ -9,6 +9,7 @@ import Editar from './components/telas/Editar';
 import Deletar from './components/telas/Deletar';
 import Mostrar from './components/telas/Mostrar';
 import Login from './components/telas/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
     <DndProvider backend={ HTML5Backend }>
       <Navbar />
       <Routes>
-        <Route index element={<Home />} />
-        <Route path='criar' element={<Criar />} />
-        <Route path=':cardId/editar' element={<Editar />} />
-        <Route path=':cardId/deletar' element={<Deletar />} />
-        <Route path=':cardId' element={<Mostrar />} />
+        <Route element={<ProtectedRoute/>}>
+          <Route index element={<Home />} />
+          <Route path='criar' element={<Criar />} />
+          <Route path=':cardId/editar' element={<Editar />} />
+          <Route path=':cardId/deletar' element={<Deletar />} />
+          <Route path=':cardId' element={<Mostrar />} />
+        </Route>
         <Route path='login' element={<Login />} />
       </Routes>
     </DndProvider>
