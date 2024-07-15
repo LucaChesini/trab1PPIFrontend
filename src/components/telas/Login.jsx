@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { register, handleSubmit, setValue, reset, formState: {errors}} = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [mensagemSucesso, setMensagemSucesso] = useState(null);
     const [mensagemErro, setMensagemErro] = useState(null);
+    const navegar = useNavigate();
 
     const onSubmit = (data) => {
         if (isSubmitting) return;
@@ -25,7 +26,7 @@ const Login = () => {
                 setMensagemSucesso('Login Realizado com Sucesso');
             }
             setIsSubmitting(false);
-            reset();
+            navegar('/');
 
             // setTimeout(() => {
             //     setMensagemSucesso(null);
@@ -58,11 +59,6 @@ const Login = () => {
                         <div className="d-flex justify-content-around">
                             <button type="submit" className="btn btn-success" disabled={isSubmitting}>
                                 {isSubmitting ? 'Enviando...' : 'Enviar'}
-                            </button>
-                            <button type="submit" className="btn btn-secondary">
-                                <Link className="text-decoration-none text-white" to="/">
-                                    Voltar
-                                </Link>
                             </button>
                         </div>
                     </form>

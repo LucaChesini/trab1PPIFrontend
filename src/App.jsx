@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import { DndProvider } from 'react-dnd';
@@ -12,10 +12,13 @@ import Login from './components/telas/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
+  const location = useLocation();
+  const rotaLogin = location.pathname === '/login';
+
   return (
     <>
     <DndProvider backend={ HTML5Backend }>
-      <Navbar />
+      {!rotaLogin && <Navbar />}
       <Routes>
         <Route element={<ProtectedRoute/>}>
           <Route index element={<Home />} />

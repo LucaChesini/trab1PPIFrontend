@@ -12,3 +12,8 @@ export const obterUsuario = () => {
         return null;
     }
 };
+
+export const logout = () => {
+    localStorage.removeItem('accessToken');
+    window.location.href = '/login';
+}
