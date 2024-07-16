@@ -14,14 +14,21 @@ const Navbar = () => {
             </Link>
             <div>
                 {usuario ? (
-                    <div className="btn-group">
-                        <button className="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {usuario.nome}
-                        </button>
-                        <ul className="dropdown-menu">
-                            <li><a href="#" onClick={logout} className="dropdown-item text-danger">Logout</a></li>
-                        </ul>
-                    </div>
+                    <>
+                        {usuario.role === 'admin' && (
+                            <a href="/" className="btn btn-warning mx-2">
+                                Usuários
+                            </a>
+                        )}
+                        <div className="btn-group">
+                            <button className="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {usuario.nome}
+                            </button>
+                            <ul className="dropdown-menu">
+                                <li><a href="#" onClick={logout} className="dropdown-item text-danger">Logout</a></li>
+                            </ul>
+                        </div>
+                    </>
                 ) : (
                     <Link to="/login" className="btn btn-primary btn-sm">Login</Link>
                 )}
