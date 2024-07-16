@@ -6,9 +6,14 @@ const Mostrar = () => {
     const { cardId } = useParams();
     const [data, setData] = useState('');
     const [loading, setLoading] = useState(true);
+    const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/cards/${cardId}`)
+        axios.get(`http://localhost:3000/api/cards/${cardId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             setData(response.data);
             setLoading(false);

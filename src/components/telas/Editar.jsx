@@ -9,9 +9,14 @@ const Editar = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [mensagemSucesso, setMensagemSucesso] = useState(null);
     const [loading, setLoading] = useState(true);
+    const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/cards/${cardId}`)
+        axios.get(`http://localhost:3000/api/cards/${cardId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             setValue('nome', response.data.nome);
             setValue('descricao', response.data.descricao);
@@ -32,7 +37,11 @@ const Editar = () => {
             descricao: data.descricao,
         }
 
-        axios.put(`http://localhost:3000/api/cards/${cardId}`, objeto)
+        axios.put(`http://localhost:3000/api/cards/${cardId}`, objeto, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             if (response.status == 200){
                 setMensagemSucesso('Card Editado com Sucesso');

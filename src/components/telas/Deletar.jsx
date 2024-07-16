@@ -6,9 +6,14 @@ const Deletar = () => {
     const {cardId} = useParams();
     const [mensagemSucesso, setMensagemSucesso] = useState(null);
     const [loading, setLoading] = useState(true);
+    const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
-        axios.delete(`http://localhost:3000/api/cards/${cardId}`)
+        axios.delete(`http://localhost:3000/api/cards/${cardId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             if (response.status == 200) {
                 setMensagemSucesso('Card deletado com Sucesso');

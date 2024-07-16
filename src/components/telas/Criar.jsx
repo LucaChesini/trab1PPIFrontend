@@ -18,8 +18,13 @@ const Criar = () => {
             descricao: data.descricao,
             coluna: 1
         }
-
-        axios.post(`http://localhost:3000/api/cards`, objeto)
+        const token = localStorage.getItem('accessToken');
+        
+        axios.post(`http://localhost:3000/api/cards`, objeto, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             if (response.status == 200){
                 setMensagemSucesso('Card Cadastrado com Sucesso');

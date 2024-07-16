@@ -7,6 +7,7 @@ const Quadro = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     const cardsRef = useRef(cards);
+    const token = localStorage.getItem('accessToken')
 
     const colunas = [
         {id: 1, nome: "Backlog"},
@@ -17,7 +18,11 @@ const Quadro = () => {
 
     
     useEffect(() => {
-        axios.get('http://localhost:3000/api/cards')
+        axios.get('http://localhost:3000/api/cards', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             setCards(response.data);
             setLoading(false);
@@ -35,7 +40,11 @@ const Quadro = () => {
             coluna: novaColuna,
         }
 
-        axios.put(`http://localhost:3000/api/cards/${cardId}`, objeto)
+        axios.put(`http://localhost:3000/api/cards/${cardId}`, objeto, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         .then(response => {
             const cartasNovas = cardsRef.current.map(card => {
                 if (cardId === card.id) {
