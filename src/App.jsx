@@ -9,11 +9,12 @@ import Editar from './components/telas/Editar';
 import Deletar from './components/telas/Deletar';
 import Mostrar from './components/telas/Mostrar';
 import Login from './components/telas/Login';
+import Cadastro from './components/telas/Cadastro';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const location = useLocation();
-  const rotaLogin = location.pathname === '/login';
+  const rotaLogin = location.pathname === '/login' || location.pathname === '/cadastro';
 
   return (
     <>
@@ -28,6 +29,7 @@ function App() {
           <Route path=':cardId' element={<Mostrar />} />
         </Route>
         <Route path='login' element={<Login />} />
+        <Route path='cadastro' element={<Cadastro />} />
       </Routes>
     </DndProvider>
     </>

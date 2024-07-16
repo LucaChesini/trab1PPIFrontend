@@ -60,6 +60,11 @@ const Login = () => {
                             <button type="submit" className="btn btn-success" disabled={isSubmitting}>
                                 {isSubmitting ? 'Enviando...' : 'Enviar'}
                             </button>
+                            <button type="submit" className="btn btn-secondary">
+                                <Link className="text-decoration-none text-white" to="/cadastro">
+                                    Criar Conta
+                                </Link>
+                            </button>
                         </div>
                     </form>
                 </div>
