@@ -16,9 +16,9 @@ const Navbar = () => {
                 {usuario ? (
                     <>
                         {usuario.role === 'admin' && (
-                            <a href="/" className="btn btn-warning mx-2">
+                            <Link to='usuarios' className="btn btn-warning mx-2">
                                 Usuários
-                            </a>
+                            </Link>
                         )}
                         <div className="btn-group">
                             <button className="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

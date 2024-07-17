@@ -7,7 +7,7 @@ const Quadro = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     const cardsRef = useRef(cards);
-    const token = localStorage.getItem('accessToken')
+    const token = localStorage.getItem('accessToken');
 
     const colunas = [
         {id: 1, nome: "Backlog"},

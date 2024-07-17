@@ -11,6 +11,7 @@ import Mostrar from './components/telas/Mostrar';
 import Login from './components/telas/Login';
 import Cadastro from './components/telas/Cadastro';
 import ProtectedRoute from './components/ProtectedRoute';
+import RotaAdmin from './components/RotaAdmin';
 
 function App() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
           <Route path=':cardId/editar' element={<Editar />} />
           <Route path=':cardId/deletar' element={<Deletar />} />
           <Route path=':cardId' element={<Mostrar />} />
+          <Route element={<RotaAdmin />} path='usuarios' />
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='cadastro' element={<Cadastro />} />
