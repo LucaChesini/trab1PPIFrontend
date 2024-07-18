@@ -20,9 +20,9 @@ const ListaUsuarios = () => {
 
     return (
         <div className="container">
-            <ul>
+            <ul className='list-group'>
             {usuarios.map(usuario => (
-                <li key={usuario.id}>
+                <li key={usuario.id} className='list-group-item'>
                 {usuario.nome} ({usuario.role})
                 </li>
             ))}
