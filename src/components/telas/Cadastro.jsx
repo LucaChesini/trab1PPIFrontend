@@ -34,7 +34,6 @@ const Cadastro = () => {
             <div className="d-flex justify-content-center">
                 <div className="w-50">
                     <h2>Cadastrar Conta</h2>
-                    {/* {mensagemSucesso && <p className="alert alert-success">{mensagemSucesso}</p>} */}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="d-flex flex-column mb-2">
                             <label htmlFor="nome" className="form-label mb-0">Nome</label>

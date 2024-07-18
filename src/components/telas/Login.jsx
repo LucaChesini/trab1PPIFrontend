@@ -28,9 +28,6 @@ const Login = () => {
             setIsSubmitting(false);
             navegar('/');
 
-            // setTimeout(() => {
-            //     setMensagemSucesso(null);
-            // }, 4000);
         }).catch(erro => {
             console.error(erro);
             setMensagemErro('Nome de usuário ou senha incorretos');
@@ -43,7 +40,6 @@ const Login = () => {
             <div className="d-flex justify-content-center">
                 <div className="w-50">
                     <h2>Login</h2>
-                    {/* {mensagemSucesso && <p className="alert alert-success">{mensagemSucesso}</p>} */}
                     {mensagemErro && <p className="alert alert-danger">{mensagemErro}</p>}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="d-flex flex-column mb-2">
